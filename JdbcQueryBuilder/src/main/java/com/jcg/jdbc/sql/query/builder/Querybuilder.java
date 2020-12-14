@@ -9,17 +9,18 @@ import java.sql.Types;
 import org.apache.log4j.Logger;
 
 import com.healthmarketscience.sqlbuilder.BinaryCondition;
-import com.healthmarketscience.sqlbuilder.Condition;
+import com.healthmarketscience.sqlbuilder.BinaryCondition.Op;
+import com.healthmarketscience.sqlbuilder.ComboCondition;
 import com.healthmarketscience.sqlbuilder.CreateTableQuery;
 import com.healthmarketscience.sqlbuilder.CustomSql;
 import com.healthmarketscience.sqlbuilder.DeleteQuery;
 import com.healthmarketscience.sqlbuilder.DropQuery;
+import com.healthmarketscience.sqlbuilder.FunctionCall;
+import com.healthmarketscience.sqlbuilder.InCondition;
 import com.healthmarketscience.sqlbuilder.InsertQuery;
 import com.healthmarketscience.sqlbuilder.OrderObject.Dir;
 import com.healthmarketscience.sqlbuilder.SelectQuery;
 import com.healthmarketscience.sqlbuilder.UpdateQuery;
-import com.healthmarketscience.sqlbuilder.SelectQuery.Hook;
-import com.healthmarketscience.sqlbuilder.SelectQuery.JoinType;
 import com.healthmarketscience.sqlbuilder.dbspec.basic.DbColumn;
 import com.healthmarketscience.sqlbuilder.dbspec.basic.DbSchema;
 import com.healthmarketscience.sqlbuilder.dbspec.basic.DbSpec;
@@ -341,12 +342,17 @@ public class Querybuilder implements DbProperties {
 		}
 	}
 	
-	public static void betweenOperator() {
+	public static void inOperator() {
 	
-		try {
-			String betweenOperator = new SelectQuery().addAllColumns().addCustomFromTable("stdtbl").addCondition(BinaryCondition.greaterThan(101, 105)).validate().toString();
-			String sql = betweenOperator.replace("'", "");
-			logger.info("\n between Operator  Generated Sql Query?= " + sql + "\n");
+		try {//selectQuery.addCondition(new InCondition(table.findColumn(col.name), ins));
+			SelectQuery selectQuery = new SelectQuery();			
+			//selectQuery.addCustomColumns(new CustomSql("id"));
+			selectQuery.addAllColumns();
+			selectQuery.addCustomFromTable(new CustomSql("stdtbl"));
+			selectQuery.addCondition(new InCondition(new CustomSql("id"),101,109));
+			String sql = selectQuery.validate().toString();
+			
+			logger.info("\n In Operator  Generated Sql Query?= " + sql + "\n");
 			
 			resObj = stmtObj.executeQuery(sql);
 			if (!resObj.next()) {
@@ -355,7 +361,7 @@ public class Querybuilder implements DbProperties {
 				do {
 					logger.info("\nId= " + resObj.getString("id") + ", First Name= " + resObj.getString("fname")+ ", last Name= " + resObj.getString("lname"));
 				} while (resObj.next());
-				logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
+				//logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
 			}
 		
 		} catch (Exception e) {
@@ -365,9 +371,7 @@ public class Querybuilder implements DbProperties {
 	}
 	
 	public static void likeOperator() {
-		
 		SelectQuery selectQuery = new SelectQuery();
-	//	String sqllike = selectQuery.addAllColumns().addCustomFromTable("stdtbl").addCondition(BinaryCondition.like(new CustomSql("fname"),"s%")).validate().toString();
 		String sqllike = selectQuery.addCustomColumns(new CustomSql("id")).addCustomFromTable("stdtbl").addCondition(BinaryCondition.like(new CustomSql("fname"),"s%")).validate().toString();
 		try {
 			String sql = sqllike;//.replace("'", "");
@@ -386,5 +390,62 @@ public class Querybuilder implements DbProperties {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public  static void groupBy() {
+		
+		SelectQuery selectQuery = new SelectQuery();
+		selectQuery.addAllColumns();
+		selectQuery.addCustomFromTable("stdtbl");
+		selectQuery.addCustomColumns(FunctionCall.countAll());
+		selectQuery.addCustomGroupings(new CustomSql("city"));
+		
+		String groupBy = selectQuery.validate().toString();
+		
+		try {
+			String sql = groupBy;//.replace("'", "");
+			logger.info("\n GroupBy Operator  Generated Sql Query?= " + sql + "\n");
+			
+			resObj = stmtObj.executeQuery(sql);
+			if (!resObj.next()) {
+				//logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
+			} else {
+				do {
+					logger.info("\nId= " + resObj.getString("id")); //+ ", First Name= " + resObj.getString("fname")+ ", last Name= " + resObj.getString("lname"));
+				} while (resObj.next());
+			//	logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static void having() {
+	SelectQuery selectQuery = new SelectQuery();
+	selectQuery.addAllColumns();
+	selectQuery.addCustomFromTable("stdtbl");
+	selectQuery.addCustomColumns(FunctionCall.countAll());
+	selectQuery.addCustomGroupings(new CustomSql("city"));
+	selectQuery.addHaving(new ComboCondition(BinaryCondition.lessThan(new CustomSql("id"), 105)));
+		String havingsql = selectQuery.validate().toString();
+		try {
+		logger.info("\n havingsql   Generated Sql Query?= " + havingsql + "\n");
+		
+		resObj = stmtObj.executeQuery(havingsql);
+		if (!resObj.next()) {
+			//logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
+		} else {
+			do {
+				logger.info("\nId= " + resObj.getString("id")); //+ ", First Name= " + resObj.getString("fname")+ ", last Name= " + resObj.getString("lname"));
+			} while (resObj.next());
+		//	logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
+		}
+	
+	} catch (Exception e) {
+		e.printStackTrace();
+	}
+		
+		
 	}
 }

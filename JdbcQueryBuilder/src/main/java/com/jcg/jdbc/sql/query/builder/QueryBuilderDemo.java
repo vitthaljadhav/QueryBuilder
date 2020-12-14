@@ -61,9 +61,13 @@ public class QueryBuilderDemo {
 		//Querybuilder.fullJoin();
 
 		
-		//Querybuilder.betweenOperator();
+		//Querybuilder.inOperator();
 		
-		Querybuilder.likeOperator();
+		//Querybuilder.likeOperator();
+		
+		//Querybuilder.groupBy();
+		
+		Querybuilder.having();
 		
 		Querybuilder.disconnectDb();
 	}

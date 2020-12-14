@@ -1561,3 +1561,267 @@ Employee_ Id = 103,Employee Name= Editor103, Salary= 1219
 2020-12-13 13:05:41 INFO  Querybuilder:69 - 
 =======Database Connection Closed=======
 
+2020-12-14 11:50:57 INFO  Querybuilder:46 - 
+=======Database Connection Open=======
+
+2020-12-14 11:50:58 INFO  Querybuilder:49 - 
+=======Statement Object Created=======
+
+2020-12-14 11:51:28 INFO  Querybuilder:301 - 
+ like Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE (fname LIKE s)
+
+2020-12-14 11:55:12 INFO  Querybuilder:70 - 
+=======Database Connection Closed=======
+
+2020-12-14 11:56:00 INFO  Querybuilder:46 - 
+=======Database Connection Open=======
+
+2020-12-14 11:56:00 INFO  Querybuilder:49 - 
+=======Statement Object Created=======
+
+2020-12-14 11:57:32 INFO  Querybuilder:301 - 
+ like Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE (fname LIKE s%)
+
+2020-12-14 11:57:32 INFO  Querybuilder:70 - 
+=======Database Connection Closed=======
+
+2020-12-14 11:57:44 INFO  Querybuilder:46 - 
+=======Database Connection Open=======
+
+2020-12-14 11:57:44 INFO  Querybuilder:49 - 
+=======Statement Object Created=======
+
+2020-12-14 12:41:55 INFO  Querybuilder:46 - 
+=======Database Connection Open=======
+
+2020-12-14 12:41:55 INFO  Querybuilder:49 - 
+=======Statement Object Created=======
+
+2020-12-14 13:00:17 INFO  Querybuilder:47 - 
+=======Database Connection Open=======
+
+2020-12-14 13:00:17 INFO  Querybuilder:50 - 
+=======Statement Object Created=======
+
+2020-12-14 13:01:20 INFO  Querybuilder:231 - 
+Generated Sql Query?= SELECT * FROM stdtbl ORDER BY fname ASC
+
+2020-12-14 13:01:20 INFO  Querybuilder:71 - 
+=======Database Connection Closed=======
+
+2020-12-14 13:02:44 INFO  Querybuilder:47 - 
+=======Database Connection Open=======
+
+2020-12-14 13:02:44 INFO  Querybuilder:50 - 
+=======Statement Object Created=======
+
+2020-12-14 13:02:44 INFO  Querybuilder:231 - 
+Generated Sql Query?= SELECT * FROM stdtbl ORDER BY fname ASC
+
+2020-12-14 13:02:44 INFO  Querybuilder:71 - 
+=======Database Connection Closed=======
+
+2020-12-14 13:03:56 INFO  Querybuilder:47 - 
+=======Database Connection Open=======
+
+2020-12-14 13:03:56 INFO  Querybuilder:50 - 
+=======Statement Object Created=======
+
+2020-12-14 13:03:56 INFO  Querybuilder:231 - 
+Generated Sql Query?= SELECT * FROM stdtbl ORDER BY fname ASC
+
+2020-12-14 13:03:56 INFO  Querybuilder:239 - 
+Id= 108,First  Name?= abc, Last Name= efg
+
+2020-12-14 13:03:56 INFO  Querybuilder:239 - 
+Id= 101,First  Name?= Editor102, Last Name= jadhav
+
+2020-12-14 13:03:56 INFO  Querybuilder:239 - 
+Id= 109,First  Name?= ggf, Last Name= asdasd
+
+2020-12-14 13:03:56 INFO  Querybuilder:239 - 
+Id= 102,First  Name?= sachin, Last Name= tendulkar
+
+2020-12-14 13:03:56 INFO  Querybuilder:239 - 
+Id= 103,First  Name?= suresh, Last Name= raina
+
+2020-12-14 13:03:56 INFO  Querybuilder:242 - 
+=======All Records Displayed From The 'employee_table'=======
+
+2020-12-14 13:03:56 INFO  Querybuilder:71 - 
+=======Database Connection Closed=======
+
+2020-12-14 13:13:58 INFO  Querybuilder:48 - 
+=======Database Connection Open=======
+
+2020-12-14 13:13:58 INFO  Querybuilder:51 - 
+=======Statement Object Created=======
+
+2020-12-14 13:14:37 INFO  Querybuilder:374 - 
+ like Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE (fname LIKE s%)
+
+2020-12-14 13:15:36 INFO  Querybuilder:72 - 
+=======Database Connection Closed=======
+
+2020-12-14 13:17:35 INFO  Querybuilder:48 - 
+=======Database Connection Open=======
+
+2020-12-14 13:17:35 INFO  Querybuilder:51 - 
+=======Statement Object Created=======
+
+2020-12-14 13:18:37 INFO  Querybuilder:48 - 
+=======Database Connection Open=======
+
+2020-12-14 13:18:37 INFO  Querybuilder:51 - 
+=======Statement Object Created=======
+
+2020-12-14 13:19:22 INFO  Querybuilder:374 - 
+ like Operator  Generated Sql Query?= SELECT id FROM stdtbl WHERE (fname LIKE 's%')
+
+2020-12-14 13:20:04 INFO  Querybuilder:374 - 
+ like Operator  Generated Sql Query?= SELECT id FROM stdtbl WHERE (fname LIKE 's%')
+
+2020-12-14 13:20:06 INFO  Querybuilder:381 - 
+Id= 102
+2020-12-14 13:20:07 INFO  Querybuilder:381 - 
+Id= 103
+2020-12-14 13:20:09 INFO  Querybuilder:383 - 
+=======All Records Displayed From The 'employee_table'=======
+
+2020-12-14 13:20:10 INFO  Querybuilder:72 - 
+=======Database Connection Closed=======
+
+2020-12-14 14:26:06 INFO  Querybuilder:49 - 
+=======Database Connection Open=======
+
+2020-12-14 14:26:06 INFO  Querybuilder:52 - 
+=======Statement Object Created=======
+
+2020-12-14 14:27:16 INFO  Querybuilder:351 - 
+ between Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE (id < 102)
+
+2020-12-14 14:27:19 INFO  Querybuilder:358 - 
+Id= 101, First Name= Editor102, last Name= jadhav
+2020-12-14 14:27:21 INFO  Querybuilder:360 - 
+=======All Records Displayed From The 'employee_table'=======
+
+2020-12-14 14:27:21 INFO  Querybuilder:73 - 
+=======Database Connection Closed=======
+
+2020-12-14 14:30:00 INFO  Querybuilder:49 - 
+=======Database Connection Open=======
+
+2020-12-14 14:30:00 INFO  Querybuilder:52 - 
+=======Statement Object Created=======
+
+2020-12-14 14:42:43 INFO  Querybuilder:351 - 
+ between Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE ((id > 105) AND (id < 102))
+
+2020-12-14 14:42:50 INFO  Querybuilder:355 - 
+=======No Records Are Present In The 'employee_table'=======
+
+2020-12-14 14:42:57 INFO  Querybuilder:73 - 
+=======Database Connection Closed=======
+
+2020-12-14 14:43:36 INFO  Querybuilder:49 - 
+=======Database Connection Open=======
+
+2020-12-14 14:43:36 INFO  Querybuilder:52 - 
+=======Statement Object Created=======
+
+2020-12-14 14:43:42 INFO  Querybuilder:351 - 
+ between Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE ((id > 102) AND (id < 107))
+
+2020-12-14 14:44:04 INFO  Querybuilder:358 - 
+Id= 103, First Name= suresh, last Name= raina
+2020-12-14 14:44:08 INFO  Querybuilder:360 - 
+=======All Records Displayed From The 'employee_table'=======
+
+2020-12-14 15:49:32 INFO  Querybuilder:46 - 
+=======Database Connection Open=======
+
+2020-12-14 15:49:32 INFO  Querybuilder:49 - 
+=======Statement Object Created=======
+
+2020-12-14 15:50:45 INFO  Querybuilder:401 - 
+ like Operator  Generated Sql Query?= SELECT *,COUNT(*) FROM stdtbl GROUP BY city
+
+2020-12-14 15:50:50 INFO  Querybuilder:408 - 
+Id= 101
+2020-12-14 15:50:51 INFO  Querybuilder:408 - 
+Id= 103
+2020-12-14 16:45:51 INFO  Querybuilder:46 - 
+=======Database Connection Open=======
+
+2020-12-14 16:45:51 INFO  Querybuilder:49 - 
+=======Statement Object Created=======
+
+2020-12-14 16:57:20 INFO  Querybuilder:47 - 
+=======Database Connection Open=======
+
+2020-12-14 16:57:20 INFO  Querybuilder:50 - 
+=======Statement Object Created=======
+
+2020-12-14 16:58:58 INFO  Querybuilder:355 - 
+ between Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE (id IN (105) )
+
+2020-12-14 16:59:01 INFO  Querybuilder:359 - 
+=======No Records Are Present In The 'employee_table'=======
+
+2020-12-14 16:59:03 INFO  Querybuilder:71 - 
+=======Database Connection Closed=======
+
+2020-12-14 17:00:01 INFO  Querybuilder:47 - 
+=======Database Connection Open=======
+
+2020-12-14 17:00:01 INFO  Querybuilder:50 - 
+=======Statement Object Created=======
+
+2020-12-14 17:00:02 INFO  Querybuilder:353 - 
+ In Operator  Generated Sql Query?= SELECT * FROM stdtbl WHERE (id IN (101,109) )
+
+2020-12-14 17:00:02 INFO  Querybuilder:360 - 
+Id= 101, First Name= Editor102, last Name= jadhav
+2020-12-14 17:00:02 INFO  Querybuilder:360 - 
+Id= 109, First Name= ggf, last Name= jadhav
+2020-12-14 17:00:02 INFO  Querybuilder:71 - 
+=======Database Connection Closed=======
+
+2020-12-14 17:05:28 INFO  Querybuilder:49 - 
+=======Database Connection Open=======
+
+2020-12-14 17:05:28 INFO  Querybuilder:52 - 
+=======Statement Object Created=======
+
+2020-12-14 17:06:58 INFO  Querybuilder:433 - 
+ havingsql   Generated Sql Query?= SELECT *,COUNT(*) FROM stdtbl GROUP BY city
+
+2020-12-14 17:07:02 INFO  Querybuilder:440 - 
+Id= 101
+2020-12-14 17:07:10 INFO  Querybuilder:440 - 
+Id= 103
+2020-12-14 17:07:12 INFO  Querybuilder:73 - 
+=======Database Connection Closed=======
+
+2020-12-14 17:07:32 INFO  Querybuilder:49 - 
+=======Database Connection Open=======
+
+2020-12-14 17:07:32 INFO  Querybuilder:52 - 
+=======Statement Object Created=======
+
+2020-12-14 17:08:58 INFO  Querybuilder:433 - 
+ havingsql   Generated Sql Query?= SELECT *,COUNT(*) FROM stdtbl GROUP BY city
+
+2020-12-14 17:08:58 INFO  Querybuilder:440 - 
+Id= 101
+2020-12-14 17:08:58 INFO  Querybuilder:440 - 
+Id= 103
+2020-12-14 17:08:58 INFO  Querybuilder:73 - 
+=======Database Connection Closed=======
+
+2020-12-14 17:09:06 INFO  Querybuilder:49 - 
+=======Database Connection Open=======
+
+2020-12-14 17:09:06 INFO  Querybuilder:52 - 
+=======Statement Object Created=======
+
