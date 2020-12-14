@@ -271,10 +271,10 @@ public class Querybuilder implements DbProperties {
 	
 		try {
 			String betweenOperator = new SelectQuery().addAllColumns().addCustomFromTable("stdtbl").addCondition(BinaryCondition.greaterThan(101, 105)).validate().toString();
-			String innerJoinUpdated = betweenOperator.replace("'", "");
-			logger.info("\n Inner Join Generated Sql Query?= " + innerJoinUpdated + "\n");
+			String sql = betweenOperator.replace("'", "");
+			logger.info("\n Inner Join Generated Sql Query?= " + sql + "\n");
 			
-			resObj = stmtObj.executeQuery(innerJoinUpdated);
+			resObj = stmtObj.executeQuery(sql);
 			if (!resObj.next()) {
 				logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
 			} else {
