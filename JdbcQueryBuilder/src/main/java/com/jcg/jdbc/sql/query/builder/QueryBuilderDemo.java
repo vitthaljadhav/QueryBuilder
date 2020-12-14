@@ -41,11 +41,29 @@ public class QueryBuilderDemo {
 		//Querybuilder.dropTableFromDb();
 
 		// Method #10 :: This Method Is Used To Disconnect From The Database Using SQLQueryBuilder Utility
-		//select Operation
-		//Querybuilder.getEmployess();
 		
-		//Querybuilder.joinWithEmpTblAndStdTbl();
-		Querybuilder.betweenOperator();
+		//Ordering Operation
+		//Querybuilder.getStudents();
+		
+		//Inner Join
+		//Querybuilder.innerJoin();
+		
+
+		//left Join
+		//Querybuilder.leftJoin();
+		
+
+		//Right Join
+		//Querybuilder.rightJoin();
+		
+
+		//Full Join
+		//Querybuilder.fullJoin();
+
+		
+		//Querybuilder.betweenOperator();
+		
+		Querybuilder.likeOperator();
 		
 		Querybuilder.disconnectDb();
 	}

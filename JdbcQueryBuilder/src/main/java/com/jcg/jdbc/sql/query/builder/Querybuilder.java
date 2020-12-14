@@ -11,11 +11,14 @@ import org.apache.log4j.Logger;
 import com.healthmarketscience.sqlbuilder.BinaryCondition;
 import com.healthmarketscience.sqlbuilder.Condition;
 import com.healthmarketscience.sqlbuilder.CreateTableQuery;
+import com.healthmarketscience.sqlbuilder.CustomSql;
 import com.healthmarketscience.sqlbuilder.DeleteQuery;
 import com.healthmarketscience.sqlbuilder.DropQuery;
 import com.healthmarketscience.sqlbuilder.InsertQuery;
+import com.healthmarketscience.sqlbuilder.OrderObject.Dir;
 import com.healthmarketscience.sqlbuilder.SelectQuery;
 import com.healthmarketscience.sqlbuilder.UpdateQuery;
+import com.healthmarketscience.sqlbuilder.SelectQuery.Hook;
 import com.healthmarketscience.sqlbuilder.SelectQuery.JoinType;
 import com.healthmarketscience.sqlbuilder.dbspec.basic.DbColumn;
 import com.healthmarketscience.sqlbuilder.dbspec.basic.DbSchema;
@@ -222,9 +225,10 @@ public class Querybuilder implements DbProperties {
 		logger.info("\n======='" + TABLE_NAME + "' Is Dropped From The Database=======\n");
 	}
 
-	public static void getEmployess() {
+	public static void getStudents() {
 		SelectQuery sql = new SelectQuery();
-		String selectQuery = sql.addAllColumns().addCustomFromTable("employee_table").validate().toString();
+		String selectQuery = sql.addAllColumns().addCustomFromTable("stdtbl").addCustomOrdering("fname", Dir.ASCENDING).validate().toString();
+		
 		logger.info("\nGenerated Sql Query?= " + selectQuery + "\n");
 		try {
 
@@ -233,8 +237,8 @@ public class Querybuilder implements DbProperties {
 				logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
 			} else {
 				do {
-					logger.info("\nId?= " + resObj.getString(COLUMN_ONE) + ", Name?= " + resObj.getString(COLUMN_TWO)
-							+ ", Salary?= " + resObj.getString(COLUMN_THREE) + "\n");
+					logger.info("\nId= " + resObj.getString("id") + ",First  Name= " + resObj.getString("fname")
+							+ ", Last Name= " + resObj.getString("lname") + "\n");
 				} while (resObj.next());
 				logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
 			}
@@ -243,7 +247,7 @@ public class Querybuilder implements DbProperties {
 		}
 	}
 	  
-	public static void joinWithEmpTblAndStdTbl() {
+	public static void innerJoin() {
 		try {
 			SelectQuery sqlQuery = new SelectQuery();
 			String innerJoin = sqlQuery.addAllColumns().addCustomJoin(SelectQuery.JoinType.INNER,"stdtbl","employee_table" ,BinaryCondition.equalTo("employee_table.employee_id", "stdtbl.id")).validate().toString();
@@ -267,12 +271,82 @@ public class Querybuilder implements DbProperties {
 	}
 	
 	
+	public static void leftJoin() {
+		try {
+			SelectQuery sqlQuery = new SelectQuery();
+			String leftjoin = sqlQuery.addAllColumns().addCustomJoin(SelectQuery.JoinType.LEFT_OUTER,"stdtbl","employee_table" ,BinaryCondition.equalTo("employee_table.employee_id", "stdtbl.id")).validate().toString();
+			String leftJoinUpdated = leftjoin.replace("'", "");
+			logger.info("\n Left Join Generated Sql Query?= " + leftJoinUpdated + "\n");
+			
+			resObj = stmtObj.executeQuery(leftJoinUpdated);
+			if (!resObj.next()) {
+				logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
+			} else {
+				do {
+					logger.info("\nId= " + resObj.getString("id") + ", First Name= " + resObj.getString("fname")+ ", last Name= " + resObj.getString("lname") + "\n" +"Employee_ Id = " + resObj.getString(COLUMN_ONE) + ",Employee Name= " + resObj.getString(COLUMN_TWO)
+							+ ", Salary= " + resObj.getString(COLUMN_THREE));
+				} while (resObj.next());
+				logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public static void rightJoin() {
+		try {
+			SelectQuery sqlQuery = new SelectQuery();
+			String rightJoin = sqlQuery.addAllColumns().addCustomJoin(SelectQuery.JoinType.RIGHT_OUTER,"stdtbl","employee_table" ,BinaryCondition.equalTo("employee_table.employee_id", "stdtbl.id")).validate().toString();
+			String rightJoinUpdated = rightJoin.replace("'", "");
+			logger.info("\n Right Join Generated Sql Query?= " + rightJoinUpdated + "\n");
+			
+			resObj = stmtObj.executeQuery(rightJoinUpdated);
+			if (!resObj.next()) {
+				logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
+			} else {
+				do {
+					logger.info("\nId= " + resObj.getString("id") + ", First Name= " + resObj.getString("fname")+ ", last Name= " + resObj.getString("lname") + "\n" +"Employee_ Id = " + resObj.getString(COLUMN_ONE) + ",Employee Name= " + resObj.getString(COLUMN_TWO)
+							+ ", Salary= " + resObj.getString(COLUMN_THREE));
+				} while (resObj.next());
+				logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void fullJoin() {
+		try {
+			SelectQuery sqlQuery = new SelectQuery();
+			String fullJoin = sqlQuery.addAllColumns().addCustomJoin(SelectQuery.JoinType.FULL_OUTER,"stdtbl","employee_table" ,BinaryCondition.equalTo("employee_table.employee_id", "stdtbl.id")).validate().toString();
+			String fullJoinUpdated = fullJoin.replace("'", "");
+			logger.info("\n full Join Generated Sql Query?= " + fullJoinUpdated + "\n");
+			
+			resObj = stmtObj.executeQuery(fullJoinUpdated);
+			if (!resObj.next()) {
+				logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
+			} else {
+				do {
+					logger.info("\nId= " + resObj.getString("id") + ", First Name= " + resObj.getString("fname")+ ", last Name= " + resObj.getString("lname") + "\n" +"Employee_ Id = " + resObj.getString(COLUMN_ONE) + ",Employee Name= " + resObj.getString(COLUMN_TWO)
+							+ ", Salary= " + resObj.getString(COLUMN_THREE));
+				} while (resObj.next());
+				logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+	
 	public static void betweenOperator() {
 	
 		try {
 			String betweenOperator = new SelectQuery().addAllColumns().addCustomFromTable("stdtbl").addCondition(BinaryCondition.greaterThan(101, 105)).validate().toString();
 			String sql = betweenOperator.replace("'", "");
-			logger.info("\n Inner Join Generated Sql Query?= " + sql + "\n");
+			logger.info("\n between Operator  Generated Sql Query?= " + sql + "\n");
 			
 			resObj = stmtObj.executeQuery(sql);
 			if (!resObj.next()) {
@@ -288,6 +362,29 @@ public class Querybuilder implements DbProperties {
 			e.printStackTrace();
 		}
 	
+	}
 	
+	public static void likeOperator() {
+		
+		SelectQuery selectQuery = new SelectQuery();
+	//	String sqllike = selectQuery.addAllColumns().addCustomFromTable("stdtbl").addCondition(BinaryCondition.like(new CustomSql("fname"),"s%")).validate().toString();
+		String sqllike = selectQuery.addCustomColumns(new CustomSql("id")).addCustomFromTable("stdtbl").addCondition(BinaryCondition.like(new CustomSql("fname"),"s%")).validate().toString();
+		try {
+			String sql = sqllike;//.replace("'", "");
+			logger.info("\n like Operator  Generated Sql Query?= " + sql + "\n");
+			
+			resObj = stmtObj.executeQuery(sql);
+			if (!resObj.next()) {
+				logger.info("\n=======No Records Are Present In The '" + TABLE_NAME + "'=======\n");
+			} else {
+				do {
+					logger.info("\nId= " + resObj.getString("id")); //+ ", First Name= " + resObj.getString("fname")+ ", last Name= " + resObj.getString("lname"));
+				} while (resObj.next());
+				logger.info("\n=======All Records Displayed From The '" + TABLE_NAME + "'=======\n");
+			}
+		
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
